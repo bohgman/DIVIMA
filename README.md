@@ -33,8 +33,10 @@ As name of the application we have chosen the name DIVIMA (Digital visitor manag
 ---> Visitors:
 
 The following functions are to be implemented for a visit:
-- create, sign out (when the guest leaves the object), edit, view, delete
+- registration, sign out (when the guest leaves the object), edit, view, delete
+
 - when creating a visit, a checkbox "Get signature" should be activated by the user
+- after unsubscribing the entry should no longer be editable
 - if a key has been assigned, a checkbox "Key returned" should be activated by the user when logging out 
 
 There are three types of visits: 
