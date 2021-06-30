@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minimal Web App with JS and Firebase</title>
+  <meta name="description" content="A minimal effort web app with plain JS + Firebase." />
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/png" href="favicon.ico" />
+  <link rel="stylesheet" href="css/main.css"></link>
+  <script src="js/c/initialize.js"></script>
+  <script src="js/m/Visitor.js"></script>
+  <script>function display_ct6() {
+    var x = new Date()
+    var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
+    hours = x.getHours( ) % 12;
+    hours = hours ? hours : 12;
+    var x1=x.getMonth() + 1+ "/" + x.getDate() + "/" + x.getFullYear(); 
+    x1 = x1 + " - " +  hours + ":" +  x.getMinutes() + ":" +  x.getSeconds() + ":" + ampm;
+    document.getElementById('ct6').innerHTML = x1;
+    display_c6();
+     }
+     function display_c6(){
+    var refresh=1000; // Refresh rate in milli seconds
+    mytime=setTimeout('display_ct6()',refresh)
+    }
+    display_c6()
+    </script>
+</head>
+
+<body onload=display_ct6();>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/key.svg" alt="" width="24" height="24" class="d-inline-block align-text-top">
+        DIVIMA
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="#">Home</a>
+          <a class="nav-item nav-link" href="/visitors-index.html">Visitors</a>
+          <a class="nav-item nav-link" href="#">Visit</a>
+          <a class="nav-item nav-link" href="#">Keys</a>
+          <a class="nav-item nav-link" href="#">Parking</a>
+          <a class="nav-item nav-link" href="#">Locations</a>
+          <a class="nav-item nav-link" href="/settings.html">Settings</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main id="main">
+    <section class="d-flex align-items-center" >
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-sm-12 col-12 h-25 p-2">
+            <span id='ct6' class="time" ></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-12 h-25 p-2">
+            <div class="rounded p-1 text-center bg-primary shadow-sm">
+              <div><a href="/visitors-index.html" class="text-white"><img src="/img/visitor.svg" width="48" height="48" class="inline-block w-100 p-2">Add Visitor</a></div>
+            </div>
+          </div>
+          <div class="col-sm-6 col-12 h-25 p-2">
+            <div class="rounded p-1 text-center bg-primary shadow-sm">
+              <div><a href="#" class="text-white"><img src="/img/visit.svg" width="48" height="48" class="inline-block w-100 p-2">Create Visit</a></div>
+            </div>
+          </div>
+        </div>
+        <div class="row text-center mt-4">
+          <div class="col-sm-4 col-4 p-2 ">
+            <div class="rounded shadow-sm bg-light">
+              <div class="kpi-value text-danger" id="kpi-value1">10</div>
+              <div class="kpi-text text-danger" id="kpi-text1">Visitors</div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-4 p-2 ">
+            <div class="rounded shadow-sm bg-light">
+            <div class="kpi-value text-danger" id="kpi-value2">10</div>
+            <div class="kpi-text text-danger" id="kpi-text2">Parking Given</div>
+            </div>
+          </div>
+          <div class="col-sm-4 col-4 p-2 ">
+            <div class="rounded shadow-sm bg-light">
+            <div class="kpi-value text-danger" id="kpi-value3">10</div>
+            <div class="kpi-text text-danger" id="kpi-text3">Keys Given</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+  </footer>
+</body>
+
+</html>
