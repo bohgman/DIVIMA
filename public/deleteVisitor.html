@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minimal Web App with JS and Firebase: Delete</title>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/png" href="favicon.ico" />
+  <link rel="stylesheet" href="css/main.css"></link>
+  <script src="js/c/initialize.js"></script>
+  <script src="js/m/Visitor.js"></script>
+  <script src="js/v/deleteVisitor.js"></script>
+  <script>
+    window.addEventListener("load", pl.v.deleteVisitor.setupUserInterface);
+  </script>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/key.svg" alt="" width="24" height="24" class="d-inline-block align-text-top">
+        DIVIMA
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">Home</a>
+          <a class="nav-item nav-link active" href="/visitors-index.html">Visitors</a>
+          <a class="nav-item nav-link" href="#">Visit</a>
+          <a class="nav-item nav-link" href="#">Keys</a>
+          <a class="nav-item nav-link" href="#">Parking</a>
+          <a class="nav-item nav-link" href="#">Locations</a>
+          <a class="nav-item nav-link" href="/settings.html">Settings</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+<main>
+  <section class="d-flex align-items-center">
+    <div class="container">
+      <div class="row d-flex justify-content-center">
+        <div class="col-sm-6 col-12 h-25 p-2 rounded shadow-sm bg-light pd-4">
+          <form id="Visitor">
+                <div class="mt-1 "><label>Select Visitor:</label></div>
+                <div class=" mb-1 w-100"><select name="selectVisitor" class="w-100"><option value=""> ---</option></select></div>
+            <div>
+              <button name="commit" type="button" class="btn btn-danger w-100 mt-4 mb-4">Delete</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="h25 fixed-bottom">
+    <div class="row pl-4 pr-4">
+      <div class="col-3 p-2">
+        <div class="rounded p-1 text-center bg-primary shadow-sm">
+          <div><a href="createVisitor.html" class="text-white"> <img src="/img/add.svg" width="48" height="48" class="inline-block w-100 p-2"><span class="text-capitalize font-weight-bold text-white">Create</span></a></div>
+        </div>
+      </div>
+      <div class="col-3 p-2">
+        <div class="rounded p-1 text-center bg-primary shadow-sm">
+          <div><a href="retrieveAndListAllVisitor.html" class="text-white"> <img src="/img/list.svg" width="48" height="48" class="inline-block w-100 p-2">Retrieve</a></div>
+        </div>
+      </div>
+      <div class="col-3 p-2">
+        <div class="rounded p-1 text-center bg-primary shadow-sm">
+          <div><a href="updateVisitor.html" class="text-white"> <img src="/img/edit.svg" width="48" height="48" class="inline-block w-100 p-2">Update</a></div>
+        </div>
+      </div>
+      <div class="col-3 p-2">
+        <div class="rounded p-1 text-center bg-primary shadow-sm">
+          <div><a href="deleteVisitor.html" class="text-white"><img src="/img/delete.svg" width="48" height="48" class="inline-block w-100 p-2">Delete</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </main>
+  <footer>
+  </footer>
+  </body>
+  </html>
