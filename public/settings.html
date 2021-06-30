@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Minimal Web App with JS and Firebase</title>
+  <meta name="description" content="A minimal effort web app with plain JS + Firebase." />
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/png" href="favicon.ico" />
+  <link rel="stylesheet" href="css/main.css"></link>
+  <script src="js/c/initialize.js"></script>
+  <script src="js/m/Visitor.js"></script>
+  <script>
+    window.addEventListener("load", function () {
+      const clearButton = document.getElementById("clearData"),
+        generateTestDataButtons = document.querySelectorAll("button.generateTestData");
+      // set event handlers for the buttons "clearData" and "generateTestData"
+      clearButton.addEventListener("click", Visitor.clearData);
+      for (const btn of generateTestDataButtons) {
+        btn.addEventListener("click", Visitor.generateTestData);
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/key.svg" alt="" width="24" height="24" class="d-inline-block align-text-top">
+        DIVIMA
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="#">Home</a>
+          <a class="nav-item nav-link" href="/visitors-index.html">Visitors</a>
+          <a class="nav-item nav-link" href="#">Visit</a>
+          <a class="nav-item nav-link" href="#">Keys</a>
+          <a class="nav-item nav-link" href="#">Parking</a>
+          <a class="nav-item nav-link" href="#">Locations</a>
+          <a class="nav-item nav-link active" href="/settings.html">Settings</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main id="main">
+    <section class="d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-sm-6 col-12 p-2 rounded shadow-sm bg-light pd-4">
+              <button class="btn btn-danger w-100 mt-4 mb-4"id="clearData" type="button">Clear database</button>
+              <button class="btn btn-success w-100 mt-4 mb-4 generateTestData" type="button">Generate test data</button>
+            </menu>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+  </footer>
+</body>
+
+</html>
