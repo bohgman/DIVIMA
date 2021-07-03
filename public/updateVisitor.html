@@ -6,6 +6,7 @@
   <title>Minimal Web App with JS and Firebase: Update</title>
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -15,10 +16,13 @@
   <link rel="stylesheet" href="css/main.css"></link>
   <script src="js/c/initialize.js"></script>
   <script src="js/m/Visitor.js"></script>
+  <script src="js/v/authenticateUser.js"></script>
   <script src="js/v/updateVisitor.js"></script>
   <script>
+    window.addEventListener("load", pl.v.authenticateUser.setupUiByUserStatus);
     window.addEventListener("load", pl.v.updateVisitor.setupUserInterface);
   </script>
+
 </head>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
   <div class="container">
@@ -31,13 +35,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-item nav-link " href="#">Home</a>
+        <a class="nav-item nav-link" href="/">Home</a>
         <a class="nav-item nav-link active" href="/visitors-index.html">Visitors</a>
         <a class="nav-item nav-link" href="#">Visit</a>
         <a class="nav-item nav-link" href="#">Keys</a>
         <a class="nav-item nav-link" href="#">Parking</a>
         <a class="nav-item nav-link" href="#">Locations</a>
         <a class="nav-item nav-link" href="/settings.html">Settings</a>
+        <div id="login-management">
+          <small hidden="hidden"><a class="nav-item nav-link" href="authenticateUser.html">Sign in or Sign up</a></small>
+          <small hidden="hidden"><button class="btn btn-danger" type="button">Sign out</button></small>
+        </div>
       </div>
     </div>
   </div>
