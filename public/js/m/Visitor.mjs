@@ -10,7 +10,7 @@
  * @constructor
  * @param {{isbn: string, title: string, year: number}} slots - Object creation slots.
  */
-import Enumeration from "../lib/Enumeration.mjs"
+import Enumeration from "../../lib/Enumeration.mjs"
 
 const VisitorTypeEL = new Enumeration({
   "IV":"Internal Visitor",
@@ -61,6 +61,8 @@ Visitor.retrieveAll = async function () {
   console.log(`${visitorRecords.length} visitor records retrieved.`);
   return visitorRecords;
 };
+
+
 // Create a Firestore document in the Firestore collection "visitors"
 Visitor.add = async function (slots) {
   const visitorsCollRef = db.collection("visitors"),
@@ -73,6 +75,7 @@ Visitor.add = async function (slots) {
   }
   console.log(`Visitor record ${slots.name} created.`);
 };
+
 // Update a Firestore document in the Firestore collection "visitors"
 Visitor.update = async function (slots) {
   const updSlots={};
@@ -141,3 +144,6 @@ Visitor.clearData = async function () {
     console.log(`${Object.values( visitorRecords).length} visitors deleted.`);
   }
 };
+
+
+export default Visitor;

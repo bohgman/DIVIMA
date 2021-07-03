@@ -18,6 +18,10 @@
   <link rel="stylesheet" href="css/main.css"></link>
   <script src="js/c/initialize.js"></script>
   <script src="js/m/Visitor.js"></script>
+  <script src="js/v/authenticateUser.js"></script>
+  <script>
+    window.addEventListener("load", pl.v.authenticateUser.setupUiByUserStatus);
+  </script>
   <script>
     window.addEventListener("load", function () {
       const clearButton = document.getElementById("clearData"),
@@ -44,7 +48,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link" href="#">Home</a>
-          <a class="nav-item nav-link" href="/visitors-index.html">Visitors</a>
+          <a class="nav-item nav-link" href="/visitors.html">Visitors</a>
           <a class="nav-item nav-link" href="#">Visit</a>
           <a class="nav-item nav-link" href="#">Keys</a>
           <a class="nav-item nav-link" href="#">Parking</a>
