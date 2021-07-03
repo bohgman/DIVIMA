@@ -8,13 +8,28 @@ h1 {
     font-size: 2rem;
 }
 
+a.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+  cursor: default;
+}
+
 .kpi-value {
   font-size: 2rem;
   font-weight:500;
 }
 .kpi-text {
-  font-size: 1.5rem;
+  font-size: 1rem;
+  font-weight:700;
+}
+
+small > span {
+  font-size:1rem;
   font-weight:500;
+  color: white;
+  padding: 1rem 1rem 1rem 0;
+  top: 4px;
+  position: relative;
 }
 /* side bar */
 
