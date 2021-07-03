@@ -17,7 +17,7 @@
   <link rel="icon" type="image/png" href="favicon.ico" />
   <link rel="stylesheet" href="css/main.css"></link>
   <script src="js/c/initialize.js"></script>
-  <script src="js/m/Visitor.js"></script>
+  <script src="js/m/Visitor.mjs" type="module"></script>
   <script src="js/v/authenticateUser.js"></script>
   <script>
     window.addEventListener("load", pl.v.authenticateUser.setupUiByUserStatus);
@@ -53,7 +53,7 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="#">Home</a>
-          <a class="nav-item nav-link disabled" href="/visitors-index.html">Visitors</a>
+          <a class="nav-item nav-link disabled" href="/visitors.html">Visitors</a>
           <a class="nav-item nav-link disabled" href="#">Visit</a>
           <a class="nav-item nav-link disabled" href="#">Keys</a>
           <a class="nav-item nav-link disabled" href="#">Parking</a>
@@ -80,7 +80,7 @@
         <div class="row mt-4">
           <div class="col-sm-6 col-12 h-25 p-2">
             <div class="rounded p-1 text-center bg-primary shadow-sm">
-              <div><a href="/visitors-index.html" class="text-white"><img src="/img/visitor.svg" width="48" height="48" class="inline-block w-100 p-2">Add Visitor</a></div>
+              <div><a href="/visitors.html" class="text-white"><img src="/img/visitor.svg" width="48" height="48" class="inline-block w-100 p-2">Add Visitor</a></div>
             </div>
           </div>
           <div class="col-sm-6 col-12 h-25 p-2">
