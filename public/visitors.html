@@ -8,14 +8,15 @@
   <meta name="description" content="A minimal effort web app with plain JS + Firebase." />
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="icon" type="image/png" href="favicon.ico" />
-  <link rel="stylesheet" href="css/main.css"></link>
+  <link rel="stylesheet" href="css/main.css">
+  </link>
   <script src="js/c/initialize.js"></script>
   <script src="js/v/visitors.mjs" type="module"></script>
   <script src="js/v/authenticateUser.js"></script>
@@ -44,7 +45,7 @@
           <a class="nav-item nav-link" href="#">Locations</a>
           <a class="nav-item nav-link" href="/settings.html">Settings</a>
           <div id="login-management">
-            <small hidden="hidden"><a class="nav-item nav-link" href="authenticateUser.html">Sign in or Sign up</a></small>
+            <small hidden="hidden"><a class="nav-item nav-link" href="authenticateUser.html">Sign in / Sign up</a></small>
             <small hidden="hidden"><button class="btn btn-danger" type="button">Sign out</button></small>
           </div>
         </div>
@@ -52,14 +53,14 @@
     </div>
   </nav>
   <main id="main">
-    <section id="Visitor-M" class="d-flex align-items-center" >
+    <section id="Visitor-M" class="d-flex align-items-center">
       <div class="container">
         <div class="row d-flex justify-content-center ">
           <div class="col-sm-6 col-12 h-25 p-2">
             <div class="rounded p-1 text-center">
-                <img src="/img/user-home.svg" width="128" height="128" class=" inline-block p-2">
-                <h1>Check the functions below in order to add, list, edit or delete a visitor</h1>
-                <img src="/img/down-arrow.svg" width="128" height="128" class=" inline-block p-2">
+              <img src="/img/user-home.svg" width="128" height="128" class=" inline-block p-2">
+              <h1>Check the functions below in order to add, list, edit or delete a visitor</h1>
+              <img src="/img/down-arrow.svg" width="128" height="128" class=" inline-block p-2">
             </div>
           </div>
         </div>
@@ -71,17 +72,17 @@
           <div class="col-sm-6 col-12 h-25 p-2 rounded shadow-sm bg-light pd-4">
             <form id="VisitorFormCreate">
               <div class="mt-1 "><label>ID:</label> </div>
-              <div class=" mb-1 w-100"><input name="id"class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="id" class="w-100" /></div>
               <div class="mt-1 "><label>Name:</label> </div>
-              <div class=" mb-1 w-100"><input name="name"class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="name" class="w-100" /></div>
               <div class="mt-1 mb-1"><label>Visitor Type:</label> </div>
-              <div class=" mb-1 w-100"><input name="visitorType"class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="visitorType" class="w-100" /></div>
               <div class="mt-1 "><label>Assigned Branch:</label> </div>
-              <div class=" mb-1 w-100"><input name="assignedBranch"class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="assignedBranch" class="w-100" /></div>
               <div class="mt-1 "><label>Company Name:</label> </div>
-              <div class=" mb-1 w-100"><input name="companyName"class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="companyName" class="w-100" /></div>
               <div class="mt-1 "><label>Email:</label> </div>
-              <div class=" mb-1 w-100"><input name="email" class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="email" class="w-100" /></div>
               <div>
                 <button name="commit" class="btn btn-danger w-100 mt-4 mb-4" type="button">Save</button>
                 <progress id="clearData" style="display:none"></progress>
@@ -91,8 +92,8 @@
         </div>
       </div>
     </section>
-    <section id="Visitor-R" >
-      <div class="container" style="    margin-top: 4rem;">
+    <section id="Visitor-R">
+      <div class="container" style="    margin-top: 5rem;">
         <div class="row">
           <div class="col-sm-12 col-12 p-2 rounded shadow-sm bg-light">
             <div class="table-responsive">
@@ -124,15 +125,15 @@
               <div class="mt-1 "><label>ID:</label> </div>
               <div class=" mb-1 w-100"><input name="id" readonly class=" w-100 form-control-plaintext"></div>
               <div class="mt-1 "><label>Name:</label> </div>
-              <div class=" mb-1 w-100"><input name="name"class="w-100"/></div>
-              <div class="mt-1 mb-1"><label>Visitor Type:</label> </div>
-              <div class=" mb-1 w-100"><input name="visitorType"class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="name" class="w-100" /></div>
+              <div class="mt-1 mb-1"><label>Visitors Type:</label> </div>
+              <div class=" mb-1 w-100"><input name="visitorType" class="w-100" /></div>
               <div class="mt-1 "><label>Assigned Branch:</label> </div>
-              <div class=" mb-1 w-100"><input name="assignedBranch"class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="assignedBranch" class="w-100" /></div>
               <div class="mt-1 "><label>Company Name:</label> </div>
-              <div class=" mb-1 w-100"><input name="companyName"class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="companyName" class="w-100" /></div>
               <div class="mt-1 "><label>Email:</label> </div>
-              <div class=" mb-1 w-100"><input name="email" class="w-100"/></div>
+              <div class=" mb-1 w-100"><input name="email" class="w-100" /></div>
               <div>
                 <button name="commit" class="btn btn-danger w-100 mt-4 mb-4" type="button">Save</button>
                 <progress id="clearData" style="display:none"></progress>
@@ -147,8 +148,8 @@
         <div class="row d-flex justify-content-center">
           <div class="col-sm-6 col-12 h-25 p-2 rounded shadow-sm bg-light pd-4">
             <form id="VisitorFormDelete">
-                  <div class="mt-1 "><label>Select Visitor:</label></div>
-                  <div class=" mb-1 w-100"><select name="selectVisitor" class="w-100"></select></div>
+              <div class="mt-1 "><label>Select Visitor:</label></div>
+              <div class=" mb-1 w-100"><select name="selectVisitor" class="w-100"></select></div>
               <div>
                 <button name="commit" type="button" class="btn btn-danger w-100 mt-4 mb-4">Delete</button>
               </div>
