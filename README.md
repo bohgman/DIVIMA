@@ -112,9 +112,14 @@ A parking lot has the following attributes:
 
 
 
-F1	Implementation of user authentication status - Mattia
-F2	Redirection to Sign in/up page - Mattia
-F3	Email verification with customized page - Daria
-F4	Implementation of enable/disable UI elements in start page	- Mattia
-F5	Implementation of Sign out - Daria
-F6	Implementation of 404 page - Daria
+- F1	Implementation of user authentication status - Mattia.
+
+- F2	Redirection to Sign in/up page - Mattia.
+
+- F3	Email verification with customized page - Daria.
+
+- F4	Implementation of enable/disable UI elements in start page	- Mattia.
+
+- F5	Implementation of Sign out - Daria.
+
+- F6	Implementation of 404 page - Daria.
