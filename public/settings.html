@@ -4,33 +4,34 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Minimal Web App with JS and Firebase</title>
+  <title>Divima Visitors Management</title>
   <meta name="description" content="A minimal effort web app with plain JS + Firebase." />
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="icon" type="image/png" href="favicon.ico" />
-  <link rel="stylesheet" href="css/main.css"></link>
+  <link rel="stylesheet" href="css/main.css">
+  </link>
   <script src="js/c/initialize.js"></script>
-  <script src="js/m/Visitor.js"></script>
+  <script type="module" src="js/c/app.mjs"></script>
   <script src="js/v/authenticateUser.js"></script>
   <script>
     window.addEventListener("load", pl.v.authenticateUser.setupUiByUserStatus);
   </script>
   <script>
-    window.addEventListener("load", function () {
+    window.addEventListener("load", function() {
       const clearButton = document.getElementById("clearData"),
-        generateTestDataButtons = document.querySelectorAll("button.generateTestData");
+        generateTestDataButtons = document.getElementById("generateTestData");
       // set event handlers for the buttons "clearData" and "generateTestData"
-      clearButton.addEventListener("click", Visitor.clearData);
-      for (const btn of generateTestDataButtons) {
-        btn.addEventListener("click", Visitor.generateTestData);
-      }
+      clearButton.addEventListener("click", clearData);
+      generateTestDataButtons.addEventListener("click", function() {
+        var ciao = generateTestData()
+      });
     });
   </script>
 </head>
@@ -47,13 +48,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" href="#">Home</a>
-          <a class="nav-item nav-link" href="/visitors.html">Visitors</a>
-          <a class="nav-item nav-link" href="#">Visit</a>
-          <a class="nav-item nav-link" href="#">Keys</a>
-          <a class="nav-item nav-link" href="#">Parking</a>
-          <a class="nav-item nav-link" href="#">Locations</a>
-          <a class="nav-item nav-link active" href="/settings.html">Settings</a>
+          <a class="nav-item nav-link" href="/">Home</a>
+          <a class="nav-item nav-link active" href="/visitors.html">Visitors</a>
+          <a class="nav-item nav-link" href="/visits.html">Visit</a>
+          <a class="nav-item nav-link" href="/keys.html">Keys</a>
+          <a class="nav-item nav-link" href="/parkings.html">Parkings</a>
+          <a class="nav-item nav-link" href="/locations.html">Locations</a>
+          <a class="nav-item nav-link" href="/settings.html">Settings</a>
           <div id="login-management">
             <small hidden="hidden"><a class="nav-item nav-link" href="authenticateUser.html">Sign in or Sign up</a></small>
             <small hidden="hidden"><button class="btn btn-danger" type="button">Sign out</button></small>
@@ -67,9 +68,8 @@
       <div class="container">
         <div class="row d-flex justify-content-center">
           <div class="col-sm-6 col-12 p-2 rounded shadow-sm bg-light pd-4">
-              <button class="btn btn-danger w-100 mt-4 mb-4"id="clearData" type="button">Clear database</button>
-              <button class="btn btn-success w-100 mt-4 mb-4 generateTestData" type="button">Generate test data</button>
-            </menu>
+            <button class="btn btn-danger w-100 mt-4 mb-4" id="clearData" type="button">Clear database</button>
+            <button class="btn btn-success w-100 mt-4 mb-4" id="generateTestData" type="button">Generate test data</button>
           </div>
         </div>
       </div>

@@ -33,7 +33,7 @@ if a parking slot has been assigned, a checkbox "Park slot free" should be activ
 Each visit has the following attributes:
 
 - Visit ID
-- Location of the visit 
+- Location of the visit
 - Visitor ID
 - Short description (title) of the visit
 - Date of the visit
@@ -49,7 +49,7 @@ The following functions are to be implemented for a visitor:
 
 There are three types of visitors:
 - internal visitors
-- external visitors 
+- external visitors
 - service providers (such as suppliers and craftsmen).
 
 Attributes for visitors:
@@ -109,3 +109,12 @@ A parking lot has the following attributes:
 ### Design Model
 
 ![Assignment7b-3](https://user-images.githubusercontent.com/73166570/123088151-aca05800-d425-11eb-8254-2c4d9d3eb4ba.png)
+
+
+
+F1	Implementation of user authentication status - Mattia
+F2	Redirection to Sign in/up page - Mattia
+F3	Email verification with customized page - Daria
+F4	Implementation of enable/disable UI elements in start page	- Mattia
+F5	Implementation of Sign out - Daria
+F6	Implementation of 404 page - Daria

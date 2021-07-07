@@ -1,18 +1,67 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 <head>
-  <meta charset="UTF-8"/>
-  <title>404 error: Minimal Web App with JS and Firebase</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Divima Visitors Management</title>
+  <meta name="description" content="A minimal effort web app with plain JS + Firebase." />
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <link rel="icon" type="image/png" href="favicon.ico" />
+  <link rel="stylesheet" href="css/main.css"></link>
+  <script src="js/c/initialize.js"></script>
+  <script src="js/m/Visitor.mjs" type="module"></script>
+  <script src="js/v/authenticateUser.js"></script>
+  <script>
+    window.addEventListener("load", pl.v.authenticateUser.setupUiByUserStatus);
+  </script>
 </head>
-<body>
-<div>
-  <h2>404 error</h2>
-  <h1>Page Not Found</h1>
-  <p>The specified file was not found in the Minimal Web App with JS and Firebase.</p>
-  <br/>
-</div>
+
+<body onload=display_ct6();>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/img/key.svg" alt="" width="24" height="24" class="d-inline-block align-text-top">
+        DIVIMA
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link active" href="/">Home</a>
+          <div id="login-management">
+            <small hidden="hidden"><a class="nav-item nav-link" href="authenticateUser.html">Sign in or Sign up</a></small>
+            <small hidden="hidden"><button class="btn btn-danger" type="button">Sign out</button></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main id="main">
+    <section class="d-flex align-items-center" >
+      <div class="container">
+        <div class="row d-flex justify-content-center text-center">
+          <div class="col-sm-6 p-2 ">
+            <div class="rounded shadow-sm bg-light">
+              <img src="/img/404-error.svg" alt="" width="128" height="128" class="d-inline-block align-text-top">
+              <div class="text-center" id="kpi-text1"><h1>This page does not exist.</h1></div>
+              <a href="/index.html" class="btn w-100 text-white rounded p-1 m-2 text-center bg-primary shadow-sm">Back to Homepage</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+  </footer>
 </body>
-<footer>
-  <a href="index.html">« Back to main menu</a>
-</footer>
+
 </html>

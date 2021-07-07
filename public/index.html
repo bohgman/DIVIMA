@@ -4,40 +4,43 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Minimal Web App with JS and Firebase</title>
+  <title>Divima Visitors Management</title>
   <meta name="description" content="A minimal effort web app with plain JS + Firebase." />
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="icon" type="image/png" href="favicon.ico" />
-  <link rel="stylesheet" href="css/main.css"></link>
+  <link rel="stylesheet" href="css/main.css">
+  </link>
   <script src="js/c/initialize.js"></script>
   <script src="js/m/Visitor.mjs" type="module"></script>
   <script src="js/v/authenticateUser.js"></script>
   <script>
     window.addEventListener("load", pl.v.authenticateUser.setupUiByUserStatus);
   </script>
-  <script>function display_ct6() {
-    var x = new Date()
-    var ampm = x.getHours( ) >= 12 ? ' PM' : ' AM';
-    hours = x.getHours( ) % 12;
-    hours = hours ? hours : 12;
-    var x1=x.getMonth() + 1+ "/" + x.getDate() + "/" + x.getFullYear(); 
-    x1 = x1 + " - " +  hours + ":" +  x.getMinutes() + ":" +  x.getSeconds() + ":" + ampm;
-    document.getElementById('ct6').innerHTML = x1;
-    display_c6();
-     }
-     function display_c6(){
-    var refresh=1000; // Refresh rate in milli seconds
-    mytime=setTimeout('display_ct6()',refresh)
+  <script>
+    function display_ct6() {
+      var x = new Date()
+      var ampm = x.getHours() >= 12 ? ' PM' : ' AM';
+      hours = x.getHours() % 12;
+      hours = hours ? hours : 12;
+      var x1 = x.getMonth() + 1 + "/" + x.getDate() + "/" + x.getFullYear();
+      x1 = x1 + " - " + hours + ":" + x.getMinutes() + ":" + x.getSeconds() + ":" + ampm;
+      document.getElementById('ct6').innerHTML = x1;
+      display_c6();
+    }
+
+    function display_c6() {
+      var refresh = 1000; // Refresh rate in milli seconds
+      mytime = setTimeout('display_ct6()', refresh)
     }
     display_c6()
-    </script>
+  </script>
 </head>
 
 <body onload=display_ct6();>
@@ -52,13 +55,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-          <a class="nav-item nav-link active" href="#">Home</a>
-          <a class="nav-item nav-link disabled" href="/visitors.html">Visitors</a>
-          <a class="nav-item nav-link disabled" href="#">Visit</a>
-          <a class="nav-item nav-link disabled" href="#">Keys</a>
-          <a class="nav-item nav-link disabled" href="#">Parking</a>
-          <a class="nav-item nav-link disabled" href="#">Locations</a>
-          <a class="nav-item nav-link disabled" href="/settings.html">Settings</a>
+          <a class="nav-item nav-link active" href="/">Home</a>
+          <a class="nav-item nav-link " href="/visitors.html">Visitors</a>
+          <a class="nav-item nav-link" href="/visits.html">Visit</a>
+          <a class="nav-item nav-link" href="/keys.html">Keys</a>
+          <a class="nav-item nav-link" href="/parkings.html">Parkings</a>
+          <a class="nav-item nav-link" href="/locations.html">Locations</a>
+          <a class="nav-item nav-link" href="/settings.html">Settings</a>
           <div id="login-management">
             <small hidden="hidden"><a class="nav-item nav-link" href="authenticateUser.html">Sign in or Sign up</a></small>
             <small hidden="hidden"><button class="btn btn-danger" type="button">Sign out</button></small>
@@ -68,12 +71,12 @@
     </div>
   </nav>
   <main id="main">
-    <section class="d-flex align-items-center" >
+    <section class="d-flex align-items-center">
       <div class="container">
         <div class="row text-center">
           <div class="col-sm-12 col-12 h-25 p-2">
             <div class="rounded p-1 text-center bg-light shadow-sm">
-              <span id='ct6' class="time text-primary" ></span>
+              <span id='ct6' class="time text-primary"></span>
             </div>
           </div>
         </div>
@@ -85,7 +88,7 @@
           </div>
           <div class="col-sm-6 col-12 h-25 p-2">
             <div class="rounded p-1 text-center bg-primary shadow-sm">
-              <div><a href="#" class="text-white"><img src="/img/visit.svg" width="48" height="48" class="inline-block w-100 p-2">Create Visit</a></div>
+              <div><a href="/visits.html" class="text-white"><img src="/img/visit.svg" width="48" height="48" class="inline-block w-100 p-2">Create Visit</a></div>
             </div>
           </div>
         </div>
@@ -98,14 +101,14 @@
           </div>
           <div class="col-sm-4 col-4 p-2 ">
             <div class="rounded shadow-sm bg-light">
-            <div class="kpi-value text-danger" id="kpi-value2">10</div>
-            <div class="kpi-text text-danger pb-2" id="kpi-text2">Parking Given</div>
+              <div class="kpi-value text-danger" id="kpi-value2">10</div>
+              <div class="kpi-text text-danger pb-2" id="kpi-text2">Parking Given</div>
             </div>
           </div>
           <div class="col-sm-4 col-4 p-2 ">
             <div class="rounded shadow-sm bg-light">
-            <div class="kpi-value text-danger" id="kpi-value3">10</div>
-            <div class="kpi-text text-danger pb-2" id="kpi-text3">Keys Given</div>
+              <div class="kpi-value text-danger" id="kpi-value3">10</div>
+              <div class="kpi-text text-danger pb-2" id="kpi-text3">Keys Given</div>
             </div>
           </div>
         </div>

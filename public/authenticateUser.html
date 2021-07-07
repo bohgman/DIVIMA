@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Minimal Web App with JS and Firebase</title>
+  <title>Divima Visitors Management</title>
   <meta name="description" content="A minimal effort web app with plain JS + Firebase." />
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
@@ -15,12 +15,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="icon" type="image/png" href="favicon.ico" />
-  <link rel="stylesheet" href="css/main.css"></link>
+  <link rel="stylesheet" href="css/main.css">
+  </link>
   <script src="js/c/initialize.js"></script>
   <script src="js/v/authenticateUser.js"></script>
   <script>
     //evaluate user authentication status
-    auth.onAuthStateChanged( function (user) {
+    auth.onAuthStateChanged(function(user) {
       if (!user) { // if user status is unknown
         // sign in user as 'anonymous'
         auth.signInAnonymously();
@@ -51,9 +52,9 @@
           <div class="col-sm-6 col-12 p-2 rounded shadow-sm bg-light pd-4">
             <form id="User">
               <div><label>Email: </label></div>
-              <div><input name="email" type="email" class="w-100"/></div>
+              <div><input name="email" type="email" class="w-100" /></div>
               <div> <label>Password: </label> </div>
-              <div><input name="password" type="password" placeholder="6+ characters" autocomplete="on" class="w-100"/></div>
+              <div><input name="password" type="password" placeholder="6+ characters" autocomplete="on" class="w-100" /></div>
               <div>
                 <button type="button" name="signin" class="btn btn-success w-100 mt-4 mb-2">Sign in</button>
                 <button type="button" name="signup" class="btn btn-danger w-100 mt-2 mb-2">Sign up</button>

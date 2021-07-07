@@ -47,13 +47,12 @@ Visitor.retrieve = async function(id) {
   try {
     visitorDocSnapshot = await visitorDocRef.get();
   } catch (e) {
-    console.error(`Error when retrieving visitors record: ${e}`);
+    console.error(`Error when retrieving visitor record: ${e}`);
     return null;
   }
   const visitorRecord = visitorDocSnapshot.data();
   return visitorRecord;
 };
-
 // Load all visitor records from Firestore
 Visitor.retrieveAll = async function() {
   const visitorsCollRef = db.collection("visitors");
@@ -61,7 +60,7 @@ Visitor.retrieveAll = async function() {
   try {
     visitorsQuerySnapshot = await visitorsCollRef.get();
   } catch (e) {
-    console.error(`Error when retrieving visitors records: ${e}`);
+    console.error(`Error when retrieving visitor records: ${e}`);
     return null;
   }
   const visitorDocs = visitorsQuerySnapshot.docs,
@@ -70,6 +69,7 @@ Visitor.retrieveAll = async function() {
   return visitorRecords;
 };
 
+
 // Create a Firestore document in the Firestore collection "visitors"
 Visitor.add = async function(slots) {
   const visitorsCollRef = db.collection("visitors"),
@@ -77,7 +77,7 @@ Visitor.add = async function(slots) {
   try {
     await visitorDocRef.set(slots);
   } catch (e) {
-    console.error(`Error when adding visitors record: ${e}`);
+    console.error(`Error when adding visitor record: ${e}`);
     return;
   }
   console.log(`Visitor record ${slots.name} created.`);
@@ -116,7 +116,7 @@ Visitor.destroy = async function(id) {
     console.error(`Error when deleting visitor record: ${e}`);
     return;
   }
-  console.log(`Visitor record ${id} is deleted.`);
+  console.log(`Visitor record ${id} deleted.`);
 };
 /*******************************************
  *** Auxiliary methods for testing **********
@@ -149,5 +149,6 @@ Visitor.clearData = async function() {
     console.log(`${Object.values( visitorRecords).length} visitors deleted.`);
   }
 };
+
 
 export default Visitor;
