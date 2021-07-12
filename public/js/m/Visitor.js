@@ -13,14 +13,7 @@
 
 class Visitor {
   // using a single record parameter with ES6 function parameter destructuring
-  constructor({
-    id,
-    name,
-    visitorType,
-    assignedBranch,
-    companyName,
-    email
-  }) {
+  constructor({id, name, visitorType, assignedBranch, companyName, email}) {
     this.id = id;
     this.name = name;
     this.visitorType = visitorType;
@@ -33,13 +26,13 @@ class Visitor {
  ***  Class-level ("static") storage management methods **
  *********************************************************/
 // Load a visitor record from Firestore
-Visitor.retrieve = async function(id) {
+Visitor.retrieve = async function (id) {
   const visitorsCollRef = db.collection("visitors"),
-    visitorDocRef = visitorsCollRef.doc(id);
-  var visitorDocSnapshot = null;
+        visitorDocRef = visitorsCollRef.doc( id);
+  var visitorDocSnapshot=null;
   try {
     visitorDocSnapshot = await visitorDocRef.get();
-  } catch (e) {
+  } catch( e) {
     console.error(`Error when retrieving visitor record: ${e}`);
     return null;
   }
@@ -47,37 +40,37 @@ Visitor.retrieve = async function(id) {
   return visitorRecord;
 };
 // Load all visitor records from Firestore
-Visitor.retrieveAll = async function() {
+Visitor.retrieveAll = async function () {
   const visitorsCollRef = db.collection("visitors");
-  var visitorsQuerySnapshot = null;
+  var visitorsQuerySnapshot=null;
   try {
     visitorsQuerySnapshot = await visitorsCollRef.get();
-  } catch (e) {
+  } catch( e) {
     console.error(`Error when retrieving visitor records: ${e}`);
     return null;
   }
   const visitorDocs = visitorsQuerySnapshot.docs,
-    visitorRecords = visitorDocs.map(d => d.data());
+        visitorRecords = visitorDocs.map( d => d.data());
   console.log(`${visitorRecords.length} visitor records retrieved.`);
   return visitorRecords;
 };
 // Create a Firestore document in the Firestore collection "visitors"
-Visitor.add = async function(slots) {
+Visitor.add = async function (slots) {
   const visitorsCollRef = db.collection("visitors"),
-    visitorDocRef = visitorsCollRef.doc(slots.id);
+        visitorDocRef = visitorsCollRef.doc( slots.id);
   try {
-    await visitorDocRef.set(slots);
-  } catch (e) {
+    await visitorDocRef.set( slots);
+  } catch( e) {
     console.error(`Error when adding visitor record: ${e}`);
     return;
   }
   console.log(`Visitor record ${slots.id} created.`);
 };
 // Update a Firestore document in the Firestore collection "visitors"
-Visitor.update = async function(slots) {
-  const updSlots = {};
+Visitor.update = async function (slots) {
+  const updSlots={};
   // retrieve up-to-date visitor record
-  const visitorRec = await Visitor.retrieve(slots.id);
+  const visitorRec = await Visitor.retrieve( slots.id);
   // update only those slots that have changed
   if (visitorRec.name !== slots.name) updSlots.name = slots.name;
   if (visitorRec.companyName !== slots.companyName) updSlots.companyName = slots.companyName;
@@ -86,10 +79,10 @@ Visitor.update = async function(slots) {
   if (visitorRec.visitorType !== slots.visitorType) updSlots.visitorType = slots.visitorType;
   if (visitorRec.assignedBranch !== slots.assignedBranch) updSlots.assignedBranch = slots.assignedBranch;
 
-  if (Object.keys(updSlots).length > 0) {
+  if (Object.keys( updSlots).length > 0) {
     try {
-      await db.collection("visitors").doc(slots.id).update(updSlots);
-    } catch (e) {
+      await db.collection("visitors").doc( slots.id).update( updSlots);
+    } catch( e) {
       console.error(`Error when updating visitor record: ${e}`);
       return;
     }
@@ -97,10 +90,10 @@ Visitor.update = async function(slots) {
   }
 };
 // Delete a Firestore document in the Firestore collection "visitors"
-Visitor.destroy = async function(id) {
+Visitor.destroy = async function (id) {
   try {
-    await db.collection("visitors").doc(id).delete();
-  } catch (e) {
+    await db.collection("visitors").doc( id).delete();
+  } catch( e) {
     console.error(`Error when deleting visitor record: ${e}`);
     return;
   }
@@ -110,8 +103,9 @@ Visitor.destroy = async function(id) {
  *** Auxiliary methods for testing **********
  ********************************************/
 // Create test data
-Visitor.generateTestData = async function() {
-  let visitorRecords = [{
+Visitor.generateTestData = async function () {
+  let visitorRecords = [
+    {
       id: "1",
       name: "Max Must",
       visitorType: "internal visitor",
@@ -129,18 +123,18 @@ Visitor.generateTestData = async function() {
     },
   ];
   // save all visitor records
-  await Promise.all(visitorRecords.map(
-    visitorRec => db.collection("visitors").doc(visitorRec.id).set(visitorRec)));
+  await Promise.all( visitorRecords.map(
+    visitorRec => db.collection("visitors").doc( visitorRec.id).set( visitorRec)));
   console.log(`${Object.keys( visitorRecords).length} visitors saved.`);
 };
 // Clear test data
-Visitor.clearData = async function() {
+Visitor.clearData = async function () {
   if (confirm("Do you really want to delete all visitor records?")) {
     // retrieve all visitors documents from Firestore
     const visitorRecords = await Visitor.retrieveAll();
     // delete all documents
-    await Promise.all(visitorRecords.map(
-      visitorRec => db.collection("visitors").doc(visitorRec.id).delete()));
+    await Promise.all( visitorRecords.map(
+      visitorRec => db.collection("visitors").doc( visitorRec.id).delete()));
     // ... and then report that they have been deleted
     console.log(`${Object.values( visitorRecords).length} visitors deleted.`);
   }

@@ -10,80 +10,218 @@
  * @constructor
  * @param {{isbn: string, title: string, year: number}} slots - Object creation slots.
  */
-import Enumeration from "../../lib/Enumeration.mjs"
-
+ import { NoConstraintViolation, MandatoryValueConstraintViolation, RangeConstraintViolation,
+  IntervalConstraintViolation, PatternConstraintViolation, UniquenessConstraintViolation }
+  from "../../lib/errorTypes.mjs";
+import { isNonEmptyString, isIntegerOrIntegerString, isBooleanOrBooleanString }
+  from "../../lib/util.mjs";
 
 class Location {
   // using a single record parameter with ES6 function parameter destructuring
-  constructor({
-    id,
-    name
-  }) {
+  constructor({id, name}) {
     this.id = id;
     this.name = name;
   }
-}
+/*********************************************************
+ ***  Get methods **
+ *********************************************************/
+  get id() {
+    return this._id;
+  };
+
+  get name() {
+    return this._name;
+  };
+
+
+/*********************************************************
+ ***  Check methods **
+ *********************************************************/
+  static async checkIdAsId( t) {
+    console.log("checkIdAsId!!!")
+    let validationResult = Location.checkId( t);
+    if ((validationResult instanceof NoConstraintViolation)) {
+      if (!t) {
+        validationResult = new MandatoryValueConstraintViolation(
+          "A value for the Id must be provided!");
+      } else {
+        let keyDocSn = await db.collection("locations").doc( t).get();
+        console.log(keyDocSn)
+        if (keyDocSn.exists) {
+          validationResult = new UniquenessConstraintViolation(
+            "There is already an ID with this record");
+        } else {
+          validationResult = new NoConstraintViolation();
+        }
+      }
+    }
+    return validationResult;
+  };
+  static checkId( t) {
+    if (!t) {
+      return new MandatoryValueConstraintViolation("An Id must be provided!");
+    } else if (!isNonEmptyString( t)) {
+      return new RangeConstraintViolation("The id must be a non-empty string!");
+    } else {
+      return new NoConstraintViolation();
+    }
+  };
+  static checkName( t) {
+    if (!t) {
+      return new MandatoryValueConstraintViolation("A name must be provided!");
+    } else if (!isNonEmptyString( t)) {
+      return new RangeConstraintViolation("The name must be a non-empty string!");
+    } else {
+      return new NoConstraintViolation();
+    }
+  };
+
+/*********************************************************
+ ***  Set methods **
+ *********************************************************/
+  set id( t) {
+    const validationResult = Location.checkId( t);
+    if (validationResult instanceof NoConstraintViolation) {
+      this._id = t;
+    } else {
+      throw validationResult;
+    }
+  };
+
+  set name( t) {
+    const validationResult = Location.checkName( t);
+    if (validationResult instanceof NoConstraintViolation) {
+      this._name = t;
+    } else {
+      throw validationResult;
+    }
+  };
+
+
+} // end class Location
+
 /*********************************************************
  ***  Class-level ("static") storage management methods **
  *********************************************************/
-// Load a key record from Firestore
-Location.retrieve = async function(id) {
+/**
+ *  Conversion between a Location object and a corresponding Firestore document
+ */
+ Location.converter = {
+  toFirestore: function (location) {
+    const data = {
+      id: location.id,
+      name: location.name,
+    };
+    return data;
+  },
+  fromFirestore: function (snapshot, options) {
+    const data = snapshot.data( options);
+    return new Location( data);
+  },
+};
+// Load a location record from Firestore
+Location.retrieve = async function (id) {
   const keysCollRef = db.collection("locations"),
-    keyDocRef = keysCollRef.doc(id);
-  var keyDocSnapshot = null;
+        keyDocRef = keysCollRef.doc( id);
+  var keyDocSnapshot=null;
   try {
     keyDocSnapshot = await keyDocRef.get();
-  } catch (e) {
+  } catch( e) {
     console.error(`Error when retrieving location record: ${e}`);
     return null;
   }
   const keyRecord = keyDocSnapshot.data();
   return keyRecord;
 };
-// Load all key records from Firestore
-Location.retrieveAll = async function() {
+// Load all location records from Firestore
+Location.retrieveAll = async function () {
   const keysCollRef = db.collection("locations");
-  var keysQuerySnapshot = null;
+  var keysQuerySnapshot=null;
   try {
     keysQuerySnapshot = await keysCollRef.get();
-  } catch (e) {
+  } catch( e) {
     console.error(`Error when retrieving location records: ${e}`);
     return null;
   }
   const keyDocs = keysQuerySnapshot.docs,
-    keyRecords = keyDocs.map(d => d.data());
+        keyRecords = keyDocs.map( d => d.data());
   console.log(`${keyRecords.length} location records retrieved.`);
   return keyRecords;
 };
 
 
 // Create a Firestore document in the Firestore collection "locations"
-Location.add = async function(slots) {
+/* Location.add = async function (slots) {
   const keysCollRef = db.collection("locations"),
-    keyDocRef = keysCollRef.doc(slots.id);
+        keyDocRef = keysCollRef.doc( slots.id);
   try {
-    await keyDocRef.set(slots);
-  } catch (e) {
+    await keyDocRef.set( slots);
+  } catch( e) {
     console.error(`Error when adding location record: ${e}`);
     return;
   }
   console.log(`Location record ${slots.name} created.`);
-};
+}; */
 
+Location.add = async function (slots) {
+  var location = null;
+  try {
+    // validate data by creating Location instance
+    console.log(slots)
+    location = new Location( slots);
+    console.log(location)
+    // invoke asynchronous ID/uniqueness check
+    let validationResult = await Location.checkIdAsId( location.id);
+    if (!validationResult instanceof NoConstraintViolation) {
+      throw validationResult;
+    }
+  } catch (e) {
+    console.error(`${e.constructor.name}: ${e.message}`);
+    location = null;
+  }
+  if (location) {
+    try {
+      const keyDocRef = db.collection("locations").doc( location.id);
+      await keyDocRef.withConverter( Location.converter).set( location);
+      console.log(`Location record "${location.id}" created!`);
+    } catch (e) {
+      console.error(`Error when adding location record: ${e}`);
+    }
+  }
+};
 // Update a Firestore document in the Firestore collection "locations"
-Location.update = async function(slots) {
-  const updSlots = {};
-  // retrieve up-to-date key record
-  const keyRec = await Location.retrieve(slots.id);
+Location.update = async function (slots) {
+  const updSlots={};
+  let validationResult = null,
+  keyRec = null,
+  keyDocRef = null;
+  try {
+    // retrieve up-to-date book record
+    keyDocRef = db.collection("locations").doc(slots.id);
+    const keyDocSn = await keyDocRef.withConverter(Location.converter).get();
+    console.log(keyDocSn.data())
+    keyRec = keyDocSn.data();
+  } catch (e) {
+    console.error(`${e.constructor.name}: ${e.message}`);
+  }
   // update only those slots that have changed
-  if (keyRec.name !== slots.name) {
-    updSlots.name = slots.name;
+  try {
+    if (keyRec._name !== slots.name) {
+      validationResult = Location.checkName( slots.name);
+      if (validationResult instanceof NoConstraintViolation) {
+        updSlots.name = slots.name;
+      } else {
+        throw validationResult;
+      }
+    }
+  } catch (e) {
+    console.error(`${e.constructor.name}: ${e.message}`);
   }
 
-  if (Object.keys(updSlots).length > 0) {
+  if (Object.keys( updSlots).length > 0) {
     try {
-      await db.collection("locations").doc(slots.id).update(updSlots);
-    } catch (e) {
+      await db.collection("locations").doc(slots.id).update( updSlots);
+    } catch( e) {
       console.error(`Error when updating location record: ${e}`);
       return;
     }
@@ -91,41 +229,14 @@ Location.update = async function(slots) {
   }
 };
 // Delete a Firestore document in the Firestore collection "locations"
-Location.destroy = async function(id) {
+Location.destroy = async function (id) {
   try {
-    await db.collection("locations").doc(id).delete();
-  } catch (e) {
-    console.error(`Error when deleting key record: ${e}`);
+    await db.collection("locations").doc( id).delete();
+  } catch( e) {
+    console.error(`Error when deleting location record: ${e}`);
     return;
   }
   console.log(`Location record ${id} deleted.`);
-};
-/*******************************************
- *** Auxiliary methods for testing **********
- ********************************************/
-// Create test data
-Location.generateTestData = async function() {
-  let locationRecords = [{
-    id: 1,
-    name: "Max Must",
-  }, ];
-  // save all key records
-  await Promise.all(locationRecords.map(
-    keyRec => db.collection("locations").doc(keyRec.id).set(keyRec)
-  ));
-  console.log(`${Object.keys( keyRecords).length} locations saved.`);
-};
-// Clear test data
-Location.clearData = async function() {
-  if (confirm("Do you really want to delete all location records?")) {
-    // retrieve all keys documents from Firestore
-    const keyRecords = await Location.retrieveAll();
-    // delete all documents
-    await Promise.all(keyRecords.map(
-      keyRec => db.collection("locations").doc(keyRec.id).delete()));
-    // ... and then report that they have been deleted
-    console.log(`${Object.values( keyRecords).length} locations deleted.`);
-  }
 };
 
 
