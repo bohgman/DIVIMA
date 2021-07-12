@@ -4,11 +4,7 @@
  */
 'use strict';
 // main namespace pl = "public library"
-const pl = {
-  m: {},
-  v: {},
-  c: {}
-};
+const pl = {m:{}, v:{}, c:{}};
 // initialize Cloud Firestore through Firebase
 // TODO: Replace the following with your app's Firebase project configuration
 if (!firebase.apps.length) {
@@ -27,3 +23,4 @@ if (!firebase.apps.length) {
 const db = firebase.firestore();
 // initialize Firestore auth
 const auth = firebase.auth();
+

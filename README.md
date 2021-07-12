@@ -123,3 +123,8 @@ A parking lot has the following attributes:
 - F5	Implementation of Sign out - Daria.
 
 - F6	Implementation of 404 page - Daria.
+
+
+- ASSIGNEMENT 7c
+
+Dallai = Keys, Locations, Parkings

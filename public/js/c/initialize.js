@@ -23,3 +23,4 @@ if (!firebase.apps.length) {
 const db = firebase.firestore();
 // initialize Firestore auth
 const auth = firebase.auth();
+
