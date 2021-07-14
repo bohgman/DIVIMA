@@ -8,16 +8,17 @@
   <meta name="description" content="A minimal effort web app with plain JS + Firebase." />
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
   <link rel="icon" type="image/png" href="favicon.ico" />
-  <link rel="stylesheet" href="css/main.css"></link>
+  <link rel="stylesheet" href="css/main.css">
+  </link>
   <script src="js/c/initialize.js"></script>
-  <script src="js/v/visitors.mjs" type="module"></script>
+  <script src="js/v/visits.mjs" type="module"></script>
   <script src="js/v/authenticateUser.js"></script>
   <script>
     window.addEventListener("load", pl.v.authenticateUser.setupUiByUserStatus);
@@ -52,59 +53,64 @@
     </div>
   </nav>
   <main id="main">
-    <section id="Visitor-M" class="d-flex align-items-center" >
+    <section id="Visit-M" class="d-flex align-items-center">
       <div class="container">
         <div class="row d-flex justify-content-center ">
           <div class="col-sm-6 col-12 h-25 p-2">
             <div class="rounded p-1 text-center">
-                <img src="/img/user-home.svg" width="128" height="128" class=" inline-block p-2">
-                <h1>Check the functions below in order to add, list, edit or delete a active</h1>
-                <img src="/img/down-arrow.svg" width="128" height="128" class=" inline-block p-2">
+              <img src="/img/user-home.svg" width="128" height="128" class=" inline-block p-2">
+              <h1>Check the functions below in order to add, list, edit or delete a active</h1>
+              <img src="/img/down-arrow.svg" width="128" height="128" class=" inline-block p-2">
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section id="Visitor-C" class="d-flex align-items-center">
+    <section id="Visit-C" class="d-flex align-items-center">
       <div class="container">
         <div class="row d-flex justify-content-center">
-          <div class="col-sm-6 col-12 h-25 p-2 rounded shadow-sm bg-light pd-4">
-            <form id="VisitorFormCreate">
-              <div class="mt-1 "><label>ID:</label> </div>
-              <div class=" mb-1 w-100"><input name="id"class="w-100"/></div>
-              <div class="mt-1 "><label>Name:</label> </div>
-              <div class=" mb-1 w-100"><input name="name"class="w-100"/></div>
-              <div class="mt-1 mb-1"><label>Visitor Type:</label> </div>
-              <div class=" mb-1 w-100"><input name="visitorType"class="w-100"/></div>
-              <div class="mt-1 "><label>Assigned Branch:</label> </div>
-              <div class=" mb-1 w-100"><input name="assignedBranch"class="w-100"/></div>
-              <div class="mt-1 "><label>Company Name:</label> </div>
-              <div class=" mb-1 w-100"><input name="companyName"class="w-100"/></div>
-              <div class="mt-1 "><label>Email:</label> </div>
-              <div class=" mb-1 w-100"><input name="email" class="w-100"/></div>
-              <div>
-                <button name="commit" class="btn btn-danger w-100 mt-4 mb-4" type="button">Save</button>
-                <progress id="clearData" style="display:none"></progress>
-              </div>
-            </form>
+          <div class="col-sm-12 col-12 h-25 p-2 pd-4 text-center text-primary">
+            <h2>Add a Visit</h2>
           </div>
+          <form id="VisitFormCreate">
+            <div class="mt-1 "><label>ID:</label> </div>
+            <div class=" mb-1 w-100"><input name="id" class="w-100" /></div>
+            <div class="mt-1 "><label>Location:</label> </div>
+            <div class=" mb-1 w-100"><input name="location" class="w-100" /></div>
+            <div class="mt-1 mb-1"><label>Title:</label> </div>
+            <div class=" mb-1 w-100"><input name="title" class="w-100" /></div>
+            <div class="mt-1 "><label>Date:</label> </div>
+            <div class=" mb-1 w-100"><input name="date" class="w-100" /></div>
+            <div class="mt-1 "><label>Parking Place:</label> </div>
+            <div class=" mb-1 w-100"><input name="parkingPlace" class="w-100" /></div>
+            <div class="mt-1 "><label>Is Available:</label> </div>
+            <div class=" mb-1 w-100"><input type="checkbox" name="isAvailable" class="w-100" /></div>
+            <div>
+              <button name="commit" class="btn btn-danger w-100 mt-4 mb-4" type="button">Save</button>
+              <progress id="clearData" style="display:none"></progress>
+            </div>
+          </form>
         </div>
       </div>
+      </div>
     </section>
-    <section id="Visitor-R" >
+    <section id="Visit-R">
       <div class="container" style="    margin-top: 4rem;">
         <div class="row">
+          <div class="col-sm-12 col-12 h-25 p-2 pd-4 text-center text-primary">
+            <h2>List of Visits</h2>
+          </div>
           <div class="col-sm-12 col-12 p-2 rounded shadow-sm bg-light">
             <div class="table-responsive">
-              <table id="visitors" class="table table-striped">
+              <table id="visits" class="table table-striped">
                 <thead>
                   <tr>
                     <th>id</th>
-                    <th>name</th>
-                    <th>visitorType</th>
-                    <th>assignedBranch</th>
-                    <th>companyName</th>
-                    <th>email</th>
+                    <th>location</th>
+                    <th>title</th>
+                    <th>date</th>
+                    <th>Parking Place</th>
+                    <th>is available</th>
                   </tr>
                 </thead>
                 <tbody></tbody>
@@ -114,41 +120,44 @@
         </div>
       </div>
     </section>
-    <section id="Visitor-U" class="d-flex align-items-center">
+    <section id="Visit-U" class="d-flex align-items-center">
       <div class="container">
         <div class="row d-flex justify-content-center">
-          <div class="col-sm-6 col-12 h-25 p-2 rounded shadow-sm bg-light pd-4">
-            <form id="VisitorFormUpdate">
-              <div class="mt-1 "><label>Select Visitor:</label></div>
-              <div class=" mb-1 w-100"><select name="selectVisitor" class="w-100"></select></div>
-              <div class="mt-1 "><label>ID:</label> </div>
-              <div class=" mb-1 w-100"><input name="id" readonly class=" w-100 form-control-plaintext"></div>
-              <div class="mt-1 "><label>Name:</label> </div>
-              <div class=" mb-1 w-100"><input name="name"class="w-100"/></div>
-              <div class="mt-1 mb-1"><label>Visitor Type:</label> </div>
-              <div class=" mb-1 w-100"><input name="visitorType"class="w-100"/></div>
-              <div class="mt-1 "><label>Assigned Branch:</label> </div>
-              <div class=" mb-1 w-100"><input name="assignedBranch"class="w-100"/></div>
-              <div class="mt-1 "><label>Company Name:</label> </div>
-              <div class=" mb-1 w-100"><input name="companyName"class="w-100"/></div>
-              <div class="mt-1 "><label>Email:</label> </div>
-              <div class=" mb-1 w-100"><input name="email" class="w-100"/></div>
-              <div>
-                <button name="commit" class="btn btn-danger w-100 mt-4 mb-4" type="button">Save</button>
-                <progress id="clearData" style="display:none"></progress>
-              </div>
-            </form>
+          <div class="col-sm-12 col-12 h-25 p-2 pd-4 text-center text-primary">
+            <h2>Edit a Visit</h2>
           </div>
+          <form id="VisitFormUpdate">
+            <div class="mt-1 "><label>ID:</label> </div>
+            <div class=" mb-1 w-100"><input name="id" class="w-100" /></div>
+            <div class="mt-1 "><label>Location:</label> </div>
+            <div class=" mb-1 w-100"><input name="location" class="w-100" /></div>
+            <div class="mt-1 mb-1"><label>Title:</label> </div>
+            <div class=" mb-1 w-100"><input name="title" class="w-100" /></div>
+            <div class="mt-1 "><label>Date:</label> </div>
+            <div class=" mb-1 w-100"><input name="date" class="w-100" /></div>
+            <div class="mt-1 "><label>Parking Place:</label> </div>
+            <div class=" mb-1 w-100"><input name="parkingPlace" class="w-100" /></div>
+            <div class="mt-1 "><label>Is Available:</label> </div>
+            <div class=" mb-1 w-100"><input type="checkbox" name="isAvailable" class="w-100" /></div>
+            <div>
+              <button name="commit" class="btn btn-danger w-100 mt-4 mb-4" type="button">Save</button>
+              <progress id="clearData" style="display:none"></progress>
+            </div>
+          </form>
         </div>
       </div>
+      </div>
     </section>
-    <section id="Visitor-D" class="d-flex align-items-center">
+    <section id="Visit-D" class="d-flex align-items-center">
       <div class="container">
         <div class="row d-flex justify-content-center">
+          <div class="col-sm-12 col-12 h-25 p-2 pd-4 text-center text-primary">
+            <h2>Delete a Visit</h2>
+          </div>
           <div class="col-sm-6 col-12 h-25 p-2 rounded shadow-sm bg-light pd-4">
-            <form id="VisitorFormDelete">
-                  <div class="mt-1 "><label>Select Visitor:</label></div>
-                  <div class=" mb-1 w-100"><select name="selectVisitor" class="w-100"></select></div>
+            <form id="VisitFormDelete">
+              <div class="mt-1 "><label>Select Visit:</label></div>
+              <div class=" mb-1 w-100"><select name="selectVisit" class="w-100"></select></div>
               <div>
                 <button name="commit" type="button" class="btn btn-danger w-100 mt-4 mb-4">Delete</button>
               </div>

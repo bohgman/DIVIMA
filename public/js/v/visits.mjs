@@ -2,7 +2,7 @@
  Import classes, datatypes and utility procedures
  ***************************************************************/
 import Visit from "../m/Visit.mjs";
-import Visitor from "../m/Visitor.mjs";
+// import Visitor from "../m/Visitor.mjs";
 import Location from "../m/Location.mjs";
 import {
   fillSelectWithOptions
@@ -43,9 +43,9 @@ document.getElementById("retrieveAndListAll")
     document.getElementById("Visit-D").style.setProperty("display", "none", "important")
     const tableBodyEl = document.querySelector("#visits > tbody");
     tableBodyEl.innerHTML = ""; // drop old content
-    const visitInstances = await Visit.retrieveAll();
-    for (const key of Object.keys(visitInstances)) {
-      const visit = visitInstances[key];
+    const visitorInstances = await Visit.retrieveAll();
+    for (const key of Object.keys(visitorInstances)) {
+      const visit =  visitorInstances[objectKey];
       const row = tableBodyEl.insertRow();
       row.insertCell().textContent = visit.id; // added from me
       row.insertCell().textContent = visit.location;
@@ -90,7 +90,7 @@ createFormEl.parkingPlace.addEventListener("input", function() {
   createFormEl.parkingPlace.setCustomValidity(Visit.checkParkingPlace(createFormEl.parkingPlace.value).message);
 });
 createFormEl.isAvailable.addEventListener("input", function() {
-  createFormEl.isAvailable.setCustomValidity(Parking.checkIsAvailable(createFormEl.isAvailable.value).message);
+  createFormEl.isAvailable.setCustomValidity(Visit.checkIsAvailable(createFormEl.isAvailable.value).message);
 });
 // handle Save button click events
 saveButton.addEventListener("click", async function() {
@@ -133,9 +133,9 @@ document.getElementById("update").addEventListener("click", async function() {
   document.getElementById("Visit-R").style.setProperty("display", "none", "important")
   document.getElementById("Visit-U").style.display = "block";
   document.getElementById("Visit-D").style.setProperty("display", "none", "important")
-  const visitInstances = await Visit.retrieveAll();
-  updSelVisitEl.innerHTML = "";
-  fillSelectWithOptions(updSelVisitEl, visitInstances,
+  const visitorInstances = await Visit.retrieveAll();
+  updSelKeyEl.innerHTML = "";
+  fillSelectWithOptions(updSelVisitEl, visitorInstances,
     "id", {
       displayProp: "name"
     });
@@ -194,25 +194,23 @@ document.getElementById("delete").addEventListener("click", async function() {
   document.getElementById("Visit-R").style.setProperty("display", "none", "important")
   document.getElementById("Visit-U").style.setProperty("display", "none", "important")
   document.getElementById("Visit-D").style.display = "block";
-  const visitInstances = await Visit.retrieveAll();
+  const visitorInstances = await Visit.retrieveAll();
   // reset selection list (drop its previous contents)
-  delSelCourseEl.innerHTML = "";
+   delSelKeyEl.innerHTML = "";
   // populate the selection list
-  fillSelectWithOptions(delSelCourseEl, visitInstances,
-    "id", {
-      displayProp: "name"
-    });
+  fillSelectWithOptions( delSelKeyEl, visitorInstances,
+      "id", {displayProp:"name"});
   deleteFormEl.reset();
-});
+   });
 // handle Delete button click events
 deleteFormEl["commit"].addEventListener("click", async function() {
-  const delSelCourseEl = deleteFormEl.selectVisit;
-  const courseId = delSelCourseEl.value;
-  let index = delSelCourseEl.selectedIndex;
+  const delSeKeyEl = deleteFormEl.selectVisit;
+  const courseId = delSelKeyEl.value;
+  let index = delSelKeyEl.selectedIndex;
   if (!courseId) return;
   if (confirm("Do you really want to delete this Visit?")) {
     await Visit.destroy(courseId);
-    delSelCourseEl.remove(index);
+    delSelKeyEl.remove(index);
   }
 });
 
@@ -246,8 +244,9 @@ function refreshManageDataUI() {
 async function handleCourseSelectChangeEvent() {
   const updateFormEl = document.querySelector("#VisitFormUpdate"),
     saveButton = updateFormEl.commit;
-  const key = updSelVisitEl.value;
-  if (key) {
+    const objectKey = updSelKeyEl.value;
+    console.log(objectKey)
+    if(objectKey) {
     const visit = await await Visit.retrieve(key);
     updateFormEl.id.value = visit.id;
     updateFormEl.location.value = visit.location;
